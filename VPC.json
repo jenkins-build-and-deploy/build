@@ -1,0 +1,37 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "",
+    "Metadata": {},
+    "Parameters": {
+      "JVPC": {
+          "Description": "-",
+          "Type": "String",
+          "Default": "10.0.0.0/16"
+      }
+    },
+    "Mappings": {},
+    "Conditions": {},
+    "Resources": {
+      "JVPC1": {
+        "Type": "AWS::EC2::JVPC",
+        "Properties": {
+          "CidrBlock": { "Ref": "JVPC" },
+          "Tags": [{ "Key": "Name", "Value":  "JVPC" }]
+        }
+      },
+      "public": {
+        "Type": "AWS::EC2::Subnet",
+        "Properties": {
+          "AvailabilityZone": "us-east-2a",
+          "VPCId": { "Ref": "JVPC1" },
+          "CidrBlock": "10.0.1.0/24",
+          "Tags": [{ "Key": "Name", "Value":  "public" }]
+        }
+      },
+      
+              }
+    },
+    "Outputs": {
+
+    }
+}
